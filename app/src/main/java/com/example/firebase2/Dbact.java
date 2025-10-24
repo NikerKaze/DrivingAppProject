@@ -14,17 +14,11 @@ import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.example.firebase2.Filestore;
-import com.example.firebase2.Loginok;
-import com.example.firebase2.R;
-import com.example.firebase2.Storing;
-import com.example.firebase2.User;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import static com.example.firebase2.FBref.refUsers;
@@ -60,9 +54,6 @@ public class Dbact extends AppCompatActivity implements AdapterView.OnItemSelect
         spnum.setAdapter(adpnum);
         spnum.setOnItemSelectedListener(this);
 
-
-//        ArrayAdapter<String> adp=new ArrayAdapter<String>(this, support_simple_spinner_dropdown_item,datalist);
-//        lv.setAdapter(adp);
     }
 
     ValueEventListener VEL = new ValueEventListener() {
@@ -138,14 +129,6 @@ public class Dbact extends AppCompatActivity implements AdapterView.OnItemSelect
         }
         else if (id==R.id.menuDB) {
             Intent si = new Intent(Dbact.this,Dbact.class);
-            startActivity(si);
-        }
-        else if (id==R.id.menuStoreimage) {
-            Intent si = new Intent(Dbact.this, Storing.class);
-            startActivity(si);
-        }
-        else if (id==R.id.menuStorefile) {
-            Intent si = new Intent(Dbact.this, Filestore.class);
             startActivity(si);
         }
         return true;

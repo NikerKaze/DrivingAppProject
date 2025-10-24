@@ -45,12 +45,6 @@ public class Loginok extends AppCompatActivity {
         } else if(st.equals("Data Filter-Sort")) {
             Intent si = new Intent(this,Dbact.class);
             startActivity(si);
-        } else if(st.equals("Image Store")) {
-            Intent si = new Intent(this,Storing.class);
-            startActivity(si);
-        } else if(st.equals("File Store")) {
-            Intent si = new Intent(this,Filestore.class);
-            startActivity(si);
         }
         return super.onOptionsItemSelected(item);
     }
