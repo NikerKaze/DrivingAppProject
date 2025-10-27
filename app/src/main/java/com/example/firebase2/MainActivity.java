@@ -3,6 +3,7 @@ package com.example.firebase2;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -35,11 +36,11 @@ import static com.example.firebase2.FBref.refUsers;
 public class MainActivity extends AppCompatActivity {
 
     TextView tVtitle, tVregister;
-    EditText eTname, eTphone, eTemail, eTpass;
-    CheckBox cBstayconnect;
+    EditText eTname, eTphone, eTemail, eTpass, eTtype;
+    CheckBox cBstayconnect, cBteacher;
     Button btn;
 
-    String name, phone, email, password, uid;
+    String name, phone, email, password, uid, type;
     User userdb;
     Boolean stayConnect, registered, firstrun;
 
@@ -51,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
 
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         String st=item.getTitle().toString();
-        if(st.equals("Login")) {
+        if(st.equals("Profile")) {
             Intent si = new Intent(this,Loginok.class);
             startActivity(si);
         } else if(st.equals("Data Filter-Sort")) {
@@ -61,6 +62,7 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,6 +76,8 @@ public class MainActivity extends AppCompatActivity {
         cBstayconnect=(CheckBox)findViewById(R.id.cBstayconnect);
         tVregister=(TextView) findViewById(R.id.tVregister);
         btn=(Button)findViewById(R.id.btn);
+        eTtype=(EditText)findViewById(R.id.eTtype);
+
 
         stayConnect=false;
         registered=true;
@@ -87,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
         super.onStart();
         SharedPreferences settings=getSharedPreferences("PREFS_NAME",MODE_PRIVATE);
         Boolean isChecked=settings.getBoolean("stayConnect",false);
-        Intent si = new Intent(MainActivity.this,Loginok.class);
+        Intent si = new Intent(MainActivity.this,MainChats.class);
         if (refAuth.getCurrentUser()!=null && isChecked) {
             stayConnect=true;
             si.putExtra("newuser",false);
@@ -110,6 +114,7 @@ public class MainActivity extends AppCompatActivity {
                 tVtitle.setText("Register");
                 eTname.setVisibility(View.VISIBLE);
                 eTphone.setVisibility(View.VISIBLE);
+                eTtype.setVisibility(View.VISIBLE);
                 btn.setText("Register");
                 registered=false;
                 logoption();
@@ -128,6 +133,7 @@ public class MainActivity extends AppCompatActivity {
                 tVtitle.setText("Login");
                 eTname.setVisibility(View.INVISIBLE);
                 eTphone.setVisibility(View.INVISIBLE);
+                eTtype.setVisibility(View.INVISIBLE);
                 btn.setText("Login");
                 registered=true;
                 regoption();
@@ -157,7 +163,7 @@ public class MainActivity extends AppCompatActivity {
                                 editor.commit();
                                 Log.d("MainActivity", "signinUserWithEmail:success");
                                 Toast.makeText(MainActivity.this, "Login Success", Toast.LENGTH_SHORT).show();
-                                Intent si = new Intent(MainActivity.this,Loginok.class);
+                                Intent si = new Intent(MainActivity.this,MainChats.class);
                                 si.putExtra("newuser",false);
                                 startActivity(si);
                             } else {
@@ -170,6 +176,7 @@ public class MainActivity extends AppCompatActivity {
             name=eTname.getText().toString();
             phone=eTphone.getText().toString();
             email=eTemail.getText().toString();
+            type=eTtype.getText().toString();
             password=eTpass.getText().toString();
 
             final ProgressDialog pd=ProgressDialog.show(this,"Register","Registering...",true);
@@ -186,10 +193,10 @@ public class MainActivity extends AppCompatActivity {
                                 Log.d("MainActivity", "createUserWithEmail:success");
                                 FirebaseUser user = refAuth.getCurrentUser();
                                 uid = user.getUid();
-                                userdb=new User(name,email,phone,uid,(long)0,true);
+                                userdb=new User(name,email,phone,uid,type,(long)0,true);
                                 refUsers.child(uid).setValue(userdb);
                                 Toast.makeText(MainActivity.this, "Successful registration", Toast.LENGTH_SHORT).show();
-                                Intent si = new Intent(MainActivity.this,Loginok.class);
+                                Intent si = new Intent(MainActivity.this,MainChats.class);
                                 si.putExtra("newuser",true);
                                 startActivity(si);
                             } else {

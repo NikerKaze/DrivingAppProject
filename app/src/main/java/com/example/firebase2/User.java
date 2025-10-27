@@ -1,7 +1,7 @@
 package com.example.firebase2;
 
 public class User {
-    private String name, email, phone, uid;
+    private String name, email, phone, uid, type;
     private long serialnum;
     private Boolean active;
 
@@ -10,20 +10,28 @@ public class User {
         name="";
         email="";
         phone="";
+        type="";
         uid="";
         serialnum=0;
         active=true;
     }
 
-    public User (String name, String email, String phone, String uid, long serialnum, Boolean active) {
+    public User (String name, String email, String phone, String uid,String type, long serialnum, Boolean active) {
         this.name=name;
         this.email=email;
         this.phone=phone;
+        this.type=type;
         this.uid=uid;
         this.serialnum=serialnum;
         this.active=active;
     }
 
+    public void setType(String type) {
+        this.type=type;
+    }
+    public String getType() {
+        return type;
+    }
     public String getName() {
         return name;
     }

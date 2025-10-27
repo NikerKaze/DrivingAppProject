@@ -65,8 +65,29 @@
             android:autoSizeTextType="uniform"
             android:textStyle="bold" />
 
+
         <TextView
             android:id="@+id/tVemailview"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.5" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="type:"
+            android:autoSizeTextType="uniform"
+            android:textStyle="bold" />
+
+
+        <TextView
+            android:id="@+id/tVtypeview"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1" />

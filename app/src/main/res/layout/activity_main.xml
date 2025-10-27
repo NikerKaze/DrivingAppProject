@@ -22,6 +22,21 @@
         <Space
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:id="@+id/tVte"
+            android:text="Welcome To DriveUp"
+            android:autoSizeTextType="uniform"
+            android:textStyle="bold" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
             android:layout_weight="0.5" />
 
         <TextView
@@ -31,7 +46,7 @@
             android:gravity="center"
             android:id="@+id/tVtitle"
             android:text="Login"
-            android:autoSizeTextType="uniform"
+            android:textSize="25dp"
             android:textStyle="bold" />
 
         <Space
@@ -91,6 +106,21 @@
             android:ems="10"
             android:hint="phone"
             android:inputType="phone" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.5" />
+
+        <EditText
+            android:id="@+id/eTtype"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:visibility="invisible"
+            android:ems="10"
+            android:hint="Teacher/Student"
+            android:inputType="textPersonName" />
 
         <Space
             android:layout_width="match_parent"
