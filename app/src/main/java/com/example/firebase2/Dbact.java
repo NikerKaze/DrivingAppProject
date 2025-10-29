@@ -109,11 +109,16 @@ public class Dbact extends AppCompatActivity implements AdapterView.OnItemSelect
     public void showbtn(View view) {
         if (field==0 || num==0) {
             Toast.makeText(this, "Please choose data to show", Toast.LENGTH_LONG).show();
-        } else {
+        }
+        else {
             ArrayAdapter<String> adp=new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item,datalist);
             lv.setAdapter(adp);
-//            adp.notifyDataSetChanged();
         }
+    }
+
+    public void showbtn2(View view) {
+        Intent si = new Intent(Dbact.this, MainChats.class);
+        startActivity(si);
     }
 
     public boolean onCreateOptionsMenu (Menu menu) {

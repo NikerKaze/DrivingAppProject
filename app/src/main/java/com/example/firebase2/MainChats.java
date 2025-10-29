@@ -84,21 +84,17 @@ public class MainChats extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        FirebaseUser fbuser = refAuth.getCurrentUser();
-        uid = fbuser.getUid();
-        name = fbuser.getDisplayName();
+        FirebaseUser fbuser=refAuth.getCurrentUser();
+        uid=fbuser.getUid();
 
-        tVtitle.setText("Hello " + name + "!");
-
-        DatabaseReference db = FirebaseDatabase.getInstance().getReference().child("Users").child(uid);
-        ValueEventListener UserListener = new ValueEventListener() {
+        DatabaseReference db=FirebaseDatabase.getInstance().getReference().child("Users").child(uid);
+        ValueEventListener UserListener=new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                User user = dataSnapshot.getValue(User.class);
-                if(user.getType().equals("Student") || user.getType().equals("student")) {
+                User user=dataSnapshot.getValue(User.class);
+                tVtitle.setText("Hello "+user.getName()+"!");
+                if(user.getType().equals("Student")||user.getType().equals("student")) {
                     btn.setVisibility(View.VISIBLE);
-                    user = dataSnapshot.getValue(User.class);
-                    tVtitle.setText("Hello " + user.getName() + "!");
                 }
             }
 

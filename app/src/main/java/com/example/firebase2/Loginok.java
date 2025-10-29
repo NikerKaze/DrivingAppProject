@@ -28,10 +28,10 @@ import static com.example.firebase2.FBref.refUsers;
 
 public class Loginok extends AppCompatActivity {
 
-    TextView tVnameview, tVemailview, tVuidview, tVtypeview;
+    TextView tVnameview, tVemailview, tVuidview, tVtypeview,tVphoneview;
     CheckBox cBconnectview;
 
-    String name, email, uid,type="a";
+    String name, email,phone, uid,type="a";
     Boolean newuser;
     User user;
     long count;
@@ -63,23 +63,17 @@ public class Loginok extends AppCompatActivity {
         tVemailview=(TextView)findViewById(R.id.tVemailview);
         tVuidview=(TextView)findViewById(R.id.tVuidview);
         tVtypeview=(TextView)findViewById(R.id.tVtypeview);
+        tVphoneview=(TextView)findViewById(R.id.tVphoneview);
         cBconnectview=(CheckBox)findViewById(R.id.cBconnectview);
 
-        Intent gi=getIntent();
-        newuser=gi.getBooleanExtra("newuser",false);
-        refUsers.addListenerForSingleValueEvent(VELUpdateSNum);
     }
 
 
     @Override
     public void onStart() {
         super.onStart();
-        FirebaseUser fbuser = refAuth.getCurrentUser();
-        uid = fbuser.getUid();
-        Query query = refUsers.orderByChild("uid").equalTo(uid);
-        query.addListenerForSingleValueEvent(VEL);
-        email = fbuser.getEmail();
-        name=fbuser.getDisplayName();
+        FirebaseUser fbuser=refAuth.getCurrentUser();
+        uid=fbuser.getUid();
 
         DatabaseReference db=FirebaseDatabase.getInstance().getReference().child("Users").child(uid);
         ValueEventListener UserListener = new ValueEventListener() {
@@ -87,6 +81,10 @@ public class Loginok extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 User user = dataSnapshot.getValue(User.class);
                 tVtypeview.setText(user.getType());
+                tVnameview.setText(user.getName());
+                tVemailview.setText(user.getEmail());
+                tVuidview.setText(user.getUid());
+                tVphoneview.setText(user.getPhone());
             }
 
             @Override
@@ -95,45 +93,10 @@ public class Loginok extends AppCompatActivity {
         };
         db.addValueEventListener(UserListener);
 
-        tVnameview.setText(name);
-        tVemailview.setText(email);
-        tVuidview.setText(uid);
         SharedPreferences settings=getSharedPreferences("PREFS_NAME",MODE_PRIVATE);
         Boolean isChecked=settings.getBoolean("stayConnect",false);
         cBconnectview.setChecked(isChecked);
     }
-
-    com.google.firebase.database.ValueEventListener VEL = new ValueEventListener() {
-        @Override
-        public void onDataChange(@NonNull DataSnapshot dS) {
-            if (dS.exists()) {
-                long count=dS.getChildrenCount();
-                for(DataSnapshot data : dS.getChildren()) {
-                    user = data.getValue(User.class);
-                    tVnameview.setText(user.getName());
-                }
-            }
-        }
-        @Override
-        public void onCancelled(@NonNull DatabaseError databaseError) {
-        }
-    };
-
-    com.google.firebase.database.ValueEventListener VELUpdateSNum = new ValueEventListener() {
-        @Override
-        public void onDataChange(@NonNull DataSnapshot dS) {
-            if (dS.exists()) {
-                count=dS.getChildrenCount();
-                if (newuser) {
-                    user.setSerialnum(count);
-                    refUsers.child(uid).setValue(user);
-                }
-            }
-        }
-        @Override
-        public void onCancelled(@NonNull DatabaseError databaseError) {
-        }
-    };
 
     public void update(View view) {
         if (!cBconnectview.isChecked()){
