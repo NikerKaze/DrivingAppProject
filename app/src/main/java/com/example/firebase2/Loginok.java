@@ -106,6 +106,7 @@ public class Loginok extends AppCompatActivity {
         SharedPreferences.Editor editor=settings.edit();
         editor.putBoolean("stayConnect",cBconnectview.isChecked());
         editor.commit();
-        finish();
+        Intent si=new Intent(this,MainChats.class);
+        startActivity(si);
     }
 }

@@ -44,24 +44,6 @@ public class MainActivity extends AppCompatActivity {
     User userdb;
     Boolean stayConnect, registered, firstrun;
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
-
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        String st=item.getTitle().toString();
-        if(st.equals("Profile")) {
-            Intent si = new Intent(this,Loginok.class);
-            startActivity(si);
-        } else if(st.equals("Data Filter-Sort")) {
-            Intent si = new Intent(this,Dbact.class);
-            startActivity(si);
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
