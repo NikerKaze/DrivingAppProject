@@ -26,27 +26,17 @@
                 android:layout_height="wrap_content"
                 android:text="User Name"
                 android:textStyle="bold"
-                android:textSize="17sp"
+                android:textSize="16sp"
                 android:textColor="#222222" />
 
             <TextView
-                android:id="@+id/tvPhone"
+                android:id="@+id/tvMsg"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="050-1234567"
-                android:textColor="#666666"
-                android:textSize="14sp"
+                android:text="Message"
+                android:textColor="@color/black"
+                android:textSize="17sp"
                 android:layout_marginTop="2dp" />
         </LinearLayout>
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/Chatbtn"
-            android:text="Open Chat"
-            android:textSize="14sp"
-            android:backgroundTint="#25d366"
-            />
-
     </LinearLayout>
 </LinearLayout>

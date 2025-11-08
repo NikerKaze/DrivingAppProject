@@ -33,6 +33,17 @@ public class Chat {
         msgs.add(messege);
     }
 
+    public boolean checkUid(String uid1,String uid2)
+    {
+        if(uid1.equals(Id1)&&uid2.equals(Id2)){
+            return true;
+        }
+        if(uid1.equals(Id2)&&uid2.equals(Id1)){
+            return true;
+        }
+        return false;
+    }
+
     public String getSenderId() {
         return Id1;
     }

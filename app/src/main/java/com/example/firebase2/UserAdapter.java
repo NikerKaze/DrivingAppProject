@@ -1,11 +1,14 @@
 package com.example.firebase2;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -26,18 +29,28 @@ public class UserAdapter extends ArrayAdapter<User> {
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-        View listItem = convertView;
-        if (listItem == null) {
-            listItem = LayoutInflater.from(mContext).inflate(R.layout.item_user, parent, false);
+        View listItem=convertView;
+        if(listItem==null) {
+            listItem=LayoutInflater.from(mContext).inflate(R.layout.item_user, parent, false);
         }
 
-        User currentUser = userList.get(position);
+        User currentUser=userList.get(position);
 
-        TextView name = listItem.findViewById(R.id.tvName);
+        TextView name=listItem.findViewById(R.id.tvName);
         name.setText(currentUser.getName());
 
-        TextView phone = listItem.findViewById(R.id.tvPhone);
+        TextView phone=listItem.findViewById(R.id.tvPhone);
         phone.setText(currentUser.getPhone());
+
+        Button btn=listItem.findViewById(R.id.Chatbtn);
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(mContext,ChatActivity.class);
+                intent.putExtra("User",currentUser);
+                mContext.startActivity(intent);
+            }
+        });
 
         return listItem;
     }
