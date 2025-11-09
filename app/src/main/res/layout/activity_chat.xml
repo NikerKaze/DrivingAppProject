@@ -15,7 +15,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:background="#25d366"
+        android:background="#FF6D00"
         android:gravity="center_vertical"
         android:paddingHorizontal="16dp">
 
@@ -24,7 +24,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Chat with [Username]"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textSize="18sp"
             android:layout_marginStart="10dp"
             android:textStyle="bold" />
