@@ -5,17 +5,20 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.method.LinkMovementMethod;
+import android.text.method.ScrollingMovementMethod;
 import android.text.style.ClickableSpan;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -39,6 +42,7 @@ import static com.example.firebase2.FBref.refAuth;
 import static com.example.firebase2.FBref.refAuth;
 import static com.example.firebase2.FBref.refUsers;
 
+import java.sql.Time;
 import java.util.ArrayList;
 
 public class MainChats extends AppCompatActivity {
@@ -46,9 +50,17 @@ public class MainChats extends AppCompatActivity {
     TextView tVtitle;
     Button btn;
     ListView lv;
+    ArrayList <User> users;
+    UserAdapter adapter;
+    GeminiManager geminiManager;
+    String TAG = "MainChats";
+
+    ValueEventListener UserListener2,UserListener;
+    DatabaseReference db2,db1=FirebaseDatabase.getInstance().getReference().child("Users");
+
 
     String name, phone, email, password, uid, type;
-    User user;
+    User curUser=null;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -78,6 +90,9 @@ public class MainChats extends AppCompatActivity {
         btn=(Button)findViewById(R.id.btn);
         lv=(ListView)findViewById(R.id.lv);
 
+        geminiManager = GeminiManager.getInstance();
+
+        textPrompt(tVtitle);
     }
 
 
@@ -87,15 +102,61 @@ public class MainChats extends AppCompatActivity {
         FirebaseUser fbuser = refAuth.getCurrentUser();
         uid = fbuser.getUid();
 
-        DatabaseReference db = FirebaseDatabase.getInstance().getReference().child("Users").child(uid);
+
+        lv=findViewById(R.id.lv);
+        users=new ArrayList<>();
+        adapter=new UserAdapter(this, users);
+        lv.setAdapter(adapter);
+
         ValueEventListener UserListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                User user = dataSnapshot.getValue(User.class);
-                if(user.getType().equals("Student") || user.getType().equals("student")) {
+                users.clear();
+                for (DataSnapshot data : dataSnapshot.getChildren()) {
+                    User user = data.getValue(User.class);
+                    if(user!=null) {
+                        if(!user.getType().equals(curUser.getType())) {
+                            DatabaseReference dbChats = FirebaseDatabase.getInstance().getReference().child("Chats");
+                            ValueEventListener ChatsListener = new ValueEventListener() {
+                                @Override
+                                public void onDataChange(DataSnapshot dataSnapshot) {
+                                    for(DataSnapshot chatSnapshot : dataSnapshot.getChildren()) {
+                                        Chat chat = chatSnapshot.getValue(Chat.class);
+                                        if(chat!=null && chat.checkUid(curUser.getUid(),user.getUid())) {
+                                            if(!chat.getMesseges().isEmpty()) {
+                                                users.add(user);
+                                                adapter.notifyDataSetChanged();
+                                            }
+                                        }
+                                    }
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError error) {
+
+                                }
+                            };
+                            dbChats.addValueEventListener(ChatsListener);
+                        }
+                    }
+                }
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        };
+
+        db2=FirebaseDatabase.getInstance().getReference().child("Users").child(uid);
+        ValueEventListener UserListener2 = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                User user=dataSnapshot.getValue(User.class);
+                curUser=user;
+                if(user.getType().equals("Student")||user.getType().equals("student")) {
                     btn.setVisibility(View.VISIBLE);
-                    user = dataSnapshot.getValue(User.class);
-                    tVtitle.setText("Hello " + user.getName() + "!");
+                    user=dataSnapshot.getValue(User.class);
                 }
             }
 
@@ -103,30 +164,38 @@ public class MainChats extends AppCompatActivity {
             public void onCancelled(DatabaseError databaseError) {
             }
         };
-        db.addValueEventListener(UserListener);
-
-
-        ArrayList<Chat> chats = new ArrayList<>();
-        DatabaseReference dbChats = FirebaseDatabase.getInstance().getReference().child("Chats");
-        ValueEventListener ChatsListener = new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                for(DataSnapshot chatSnapshot : dataSnapshot.getChildren()) {
-                    Chat chat = chatSnapshot.getValue(Chat.class);
-                    if (chat != null) {
-                        chats.add(chat);
-                    }
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        };
-        dbChats.addValueEventListener(ChatsListener);
-
+        db2.addValueEventListener(UserListener2);
+        db1.addValueEventListener(UserListener);
     }
+
+
+    public void textPrompt(View view) {
+
+        InputMethodManager imm = (InputMethodManager) this.getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(view.getWindowToken(),0);
+        String prompt = "Respond with only a 2-word greeting. Be creative)";
+        ProgressDialog pD = new ProgressDialog(this);
+        pD.setTitle("Sent Prompt");
+        pD.setMessage("Waiting for response...");
+        pD.setCancelable(false);
+        pD.show();
+
+        geminiManager.sendTextPrompt(prompt, new GeminiCallback() {
+            @Override
+            public void onSuccess(String result) {
+                pD.dismiss();
+                tVtitle.setText(result);
+            }
+
+            @Override
+            public void onFailure(Throwable error) {
+                pD.dismiss();
+                tVtitle.setText("Failed prompting Gemini");
+                Log.e(TAG, "textPrompt/ Error: " + error.getMessage());
+            }
+        });
+    }
+
 
     public void TeacherList(View view) {
         Intent si = new Intent(MainChats.this,TeacherList.class);

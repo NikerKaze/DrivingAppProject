@@ -2,11 +2,16 @@ package com.example.firebase2;
 
 import static com.example.firebase2.FBref.refAuth;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+import java.util.UUID;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -30,10 +35,29 @@ public class ChatActivity extends AppCompatActivity {
     TextView tv;
     ListView lv;
     EditText et;
-    Button btn;
+    Button btn,exitbtn;
     ArrayList<Messege> messeges=new ArrayList<>();
     private MessegeAdapter adapter;
 
+    Chat currentChat;
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        String st=item.getTitle().toString();
+        if(st.equals("Profile")) {
+            Intent si = new Intent(this,Loginok.class);
+            startActivity(si);
+        } else if(st.equals("Data Filter-Sort")) {
+            Intent si = new Intent(this,Dbact.class);
+            startActivity(si);
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,10 +69,12 @@ public class ChatActivity extends AppCompatActivity {
         lv=findViewById(R.id.chatListView);
         et=findViewById(R.id.messageInput);
         btn=findViewById(R.id.sendButton);
+        exitbtn=findViewById(R.id.exitbtn);
 
         User user2=(User)getIntent().getSerializableExtra("User");
         FirebaseUser fbuser=refAuth.getCurrentUser();
         String uid=fbuser.getUid();
+        currentChat=new Chat(uid,user2.getUid(),UUID.randomUUID().toString());
 
         adapter=new MessegeAdapter(this, messeges);
         lv.setAdapter(adapter);
@@ -60,6 +86,7 @@ public class ChatActivity extends AppCompatActivity {
                     Chat chat = chatSnapshot.getValue(Chat.class);
                     if(chat!=null && chat.checkUid(uid,user2.getUid())) {
                         messeges.clear();
+                        currentChat=chat;
                         for(Messege messege : chat.getMesseges()) {
                             messeges.add(messege);
                         }
@@ -75,6 +102,16 @@ public class ChatActivity extends AppCompatActivity {
         };
         dbChats.addValueEventListener(ChatsListener);
 
+        tv.setText("Chat with "+user2.getName());
 
+        btn.setOnClickListener(v -> {
+            currentChat.addMessege(new Messege(et.getText().toString(),uid,user2.getUid(),UUID.randomUUID().toString()));
+            dbChats.child(currentChat.getChatId()).setValue(currentChat);
+            et.setText("");
+        });
+
+        exitbtn.setOnClickListener(view -> {
+            finish();
+        });
     }
 }

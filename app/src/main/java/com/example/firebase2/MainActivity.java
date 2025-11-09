@@ -36,8 +36,8 @@ import static com.example.firebase2.FBref.refUsers;
 public class MainActivity extends AppCompatActivity {
 
     TextView tVtitle, tVregister;
-    EditText eTname, eTphone, eTemail, eTpass, eTtype;
-    CheckBox cBstayconnect, cBteacher;
+    EditText eTname, eTphone, eTemail, eTpass;
+    CheckBox cBstayconnect, cBteacher,eTtype;
     Button btn;
 
     String name, phone, email, password, uid, type;
@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
         cBstayconnect=(CheckBox)findViewById(R.id.cBstayconnect);
         tVregister=(TextView) findViewById(R.id.tVregister);
         btn=(Button)findViewById(R.id.btn);
-        eTtype=(EditText)findViewById(R.id.eTtype);
+        eTtype=(CheckBox)findViewById(R.id.eTtype);
 
 
         stayConnect=false;
@@ -158,7 +158,14 @@ public class MainActivity extends AppCompatActivity {
             name=eTname.getText().toString();
             phone=eTphone.getText().toString();
             email=eTemail.getText().toString();
-            type=eTtype.getText().toString();
+            if(eTtype.isChecked())
+            {
+                type="Teacher";
+            }
+            else
+            {
+                type="Student";
+            }
             password=eTpass.getText().toString();
 
             final ProgressDialog pd=ProgressDialog.show(this,"Register","Registering...",true);
@@ -179,7 +186,6 @@ public class MainActivity extends AppCompatActivity {
                                 refUsers.child(uid).setValue(userdb);
                                 Toast.makeText(MainActivity.this, "Successful registration", Toast.LENGTH_SHORT).show();
                                 Intent si = new Intent(MainActivity.this,MainChats.class);
-                                si.putExtra("newuser",true);
                                 startActivity(si);
                             } else {
                                 if (task.getException() instanceof FirebaseAuthUserCollisionException)

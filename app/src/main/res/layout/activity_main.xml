@@ -112,15 +112,14 @@
             android:layout_height="0dp"
             android:layout_weight="0.5" />
 
-        <EditText
+        <CheckBox
             android:id="@+id/eTtype"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
             android:visibility="invisible"
-            android:ems="10"
-            android:hint="Teacher/Student"
-            android:inputType="textPersonName" />
+            android:text="Are you a Teacher"
+           />
 
         <Space
             android:layout_width="match_parent"
