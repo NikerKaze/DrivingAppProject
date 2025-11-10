@@ -47,7 +47,7 @@ import java.util.ArrayList;
 
 public class MainChats extends AppCompatActivity {
 
-    TextView tVtitle;
+    TextView tVtitle,tVactive;
     Button btn;
     ListView lv;
     ArrayList <User> users;
@@ -87,6 +87,7 @@ public class MainChats extends AppCompatActivity {
         setContentView(R.layout.activity_main_chats);
 
         tVtitle=(TextView)findViewById(R.id.tVtitle);
+        tVactive=(TextView)findViewById(R.id.tVactive);
         btn=(Button)findViewById(R.id.btn);
         lv=(ListView)findViewById(R.id.lv);
 
@@ -173,7 +174,7 @@ public class MainChats extends AppCompatActivity {
 
         InputMethodManager imm = (InputMethodManager) this.getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(view.getWindowToken(),0);
-        String prompt = "Respond with only a 2-word greeting. Be creative)";
+        String prompt = "Respond with only a 2-word greeting, Use different words, Add a !";
         ProgressDialog pD = new ProgressDialog(this);
         pD.setTitle("Sent Prompt");
         pD.setMessage("Waiting for response...");

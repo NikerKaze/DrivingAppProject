@@ -79,13 +79,13 @@
 
             <Button
                 android:id="@+id/btn2"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:layout_weight="1"
                 android:textColor="@color/white"
                 android:backgroundTint="#FF6D00"
                 android:onClick="showbtn2"
-                android:text="Go Back" />
+                android:text="Home Screen" />
 
             <Space
                 android:layout_width="0dp"
@@ -107,8 +107,8 @@
             <Button
                 android:id="@+id/btn"
                 android:backgroundTint="#FF6D00"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:layout_weight="1"
                 android:onClick="showbtn"
                 android:textColor="@color/white"
