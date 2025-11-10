@@ -43,7 +43,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:text="name:"
+            android:text="Name:"
             android:textColor="@color/black"
             android:autoSizeTextType="uniform"
             android:textStyle="bold" />
@@ -64,7 +64,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:text="e-mail:"
+            android:text="E-mail:"
             android:textColor="@color/black"
             android:autoSizeTextType="uniform"
             android:textStyle="bold" />
@@ -86,7 +86,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:text="phone:"
+            android:text="Phone:"
             android:textColor="@color/black"
             android:autoSizeTextType="uniform"
             android:textStyle="bold" />
@@ -108,7 +108,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:text="type:"
+            android:text="Type:"
             android:textColor="@color/black"
             android:autoSizeTextType="uniform"
             android:textStyle="bold" />
@@ -176,6 +176,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="5"
                 android:onClick="update"
+                android:textColor="@color/white"
                 android:backgroundTint="#FF6D00"
                 android:text="Home Screen" />
 

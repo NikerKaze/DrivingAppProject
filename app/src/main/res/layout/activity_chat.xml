@@ -16,26 +16,44 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:background="#FF6D00"
-        android:gravity="center_vertical"
-        android:paddingHorizontal="16dp">
+        android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/chatUserName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Chat with [Username]"
-            android:textColor="@color/white"
-            android:textSize="18sp"
-            android:layout_marginStart="10dp"
-            android:textStyle="bold" />
+        <LinearLayout
+            android:layout_width="280dp"
+            android:layout_height="60dp"
+            android:background="#FF6D00"
+            android:gravity="center_vertical"
+            android:paddingHorizontal="16dp">
 
-        <Button
-            android:id="@+id/exitbtn"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginStart="180dp"
-            android:background="@drawable/exiticon"
-            />
+            <TextView
+                android:id="@+id/chatUserName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Chat with [Username]"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:layout_marginStart="10dp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="80dp"
+            android:layout_height="60dp"
+            android:background="#FF6D00"
+            android:layout_marginHorizontal="52dp"
+            android:gravity="center_vertical"
+            android:paddingHorizontal="16dp"
+            >
+
+            <Button
+                android:id="@+id/exitbtn"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/exiticon"
+                />
+
+        </LinearLayout>
 
     </LinearLayout>
 

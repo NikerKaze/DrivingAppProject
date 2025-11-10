@@ -58,8 +58,7 @@ public class MainChats extends AppCompatActivity {
     ValueEventListener UserListener2,UserListener;
     DatabaseReference db2,db1=FirebaseDatabase.getInstance().getReference().child("Users");
 
-
-    String name, phone, email, password, uid, type;
+    String uid;
     User curUser=null;
 
     @Override
@@ -100,9 +99,8 @@ public class MainChats extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        FirebaseUser fbuser = refAuth.getCurrentUser();
-        uid = fbuser.getUid();
-
+        FirebaseUser fbuser=refAuth.getCurrentUser();
+        uid=fbuser.getUid();
 
         lv=findViewById(R.id.lv);
         users=new ArrayList<>();

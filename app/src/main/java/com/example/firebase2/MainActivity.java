@@ -37,12 +37,12 @@ public class MainActivity extends AppCompatActivity {
 
     TextView tVtitle, tVregister;
     EditText eTname, eTphone, eTemail, eTpass;
-    CheckBox cBstayconnect, cBteacher,eTtype;
+    CheckBox cBstayconnect,eTtype;
     Button btn;
 
     String name, phone, email, password, uid, type;
     User userdb;
-    Boolean stayConnect, registered, firstrun;
+    Boolean stayConnect, registered;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -85,7 +85,10 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        if (stayConnect) finish();
+        if (stayConnect)
+        {
+            finish();
+        }
     }
 
     private void regoption() {
@@ -128,33 +131,35 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void logorreg(View view) {
-        if (registered) {
+        if(registered) {
             email=eTemail.getText().toString();
             password=eTpass.getText().toString();
 
             final ProgressDialog pd=ProgressDialog.show(this,"Login","Connecting...",true);
-            refAuth.signInWithEmailAndPassword(email, password)
-                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-                            pd.dismiss();
-                            if (task.isSuccessful()) {
-                                SharedPreferences settings=getSharedPreferences("PREFS_NAME",MODE_PRIVATE);
-                                SharedPreferences.Editor editor=settings.edit();
-                                editor.putBoolean("stayConnect",cBstayconnect.isChecked());
-                                editor.commit();
-                                Log.d("MainActivity", "signinUserWithEmail:success");
-                                Toast.makeText(MainActivity.this, "Login Success", Toast.LENGTH_SHORT).show();
-                                Intent si = new Intent(MainActivity.this,MainChats.class);
-                                si.putExtra("newuser",false);
-                                startActivity(si);
-                            } else {
-                                Log.d("MainActivity", "signinUserWithEmail:fail");
-                                Toast.makeText(MainActivity.this, "e-mail or password are wrong!", Toast.LENGTH_LONG).show();
-                            }
-                        }
-                    });
-        } else {
+            refAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                    pd.dismiss();
+                    if (task.isSuccessful()) {
+                        SharedPreferences settings=getSharedPreferences("PREFS_NAME",MODE_PRIVATE);
+                        SharedPreferences.Editor editor=settings.edit();
+                        editor.putBoolean("stayConnect",cBstayconnect.isChecked());
+                        editor.commit();
+                        Log.d("MainActivity", "signinUserWithEmail:success");
+                        Toast.makeText(MainActivity.this, "Login Success", Toast.LENGTH_SHORT).show();
+                        Intent si = new Intent(MainActivity.this,MainChats.class);
+                        si.putExtra("newuser",false);
+                        startActivity(si);
+                    }
+                    else {
+                        Log.d("MainActivity", "signinUserWithEmail:fail");
+                        Toast.makeText(MainActivity.this, "e-mail or password are wrong!", Toast.LENGTH_LONG).show();
+                    }
+                }
+            });
+        }
+
+        else {
             name=eTname.getText().toString();
             phone=eTphone.getText().toString();
             email=eTemail.getText().toString();
@@ -169,34 +174,37 @@ public class MainActivity extends AppCompatActivity {
             password=eTpass.getText().toString();
 
             final ProgressDialog pd=ProgressDialog.show(this,"Register","Registering...",true);
-            refAuth.createUserWithEmailAndPassword(email, password)
-                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-                            pd.dismiss();
-                            if (task.isSuccessful()) {
-                                SharedPreferences settings=getSharedPreferences("PREFS_NAME",MODE_PRIVATE);
-                                SharedPreferences.Editor editor=settings.edit();
-                                editor.putBoolean("stayConnect",cBstayconnect.isChecked());
-                                editor.commit();
-                                Log.d("MainActivity", "createUserWithEmail:success");
-                                FirebaseUser user = refAuth.getCurrentUser();
-                                uid = user.getUid();
-                                userdb=new User(name,email,phone,uid,type,(long)0,true);
-                                refUsers.child(uid).setValue(userdb);
-                                Toast.makeText(MainActivity.this, "Successful registration", Toast.LENGTH_SHORT).show();
-                                Intent si = new Intent(MainActivity.this,MainChats.class);
-                                startActivity(si);
-                            } else {
-                                if (task.getException() instanceof FirebaseAuthUserCollisionException)
-                                    Toast.makeText(MainActivity.this, "User with e-mail already exist!", Toast.LENGTH_SHORT).show();
-                                else {
-                                    Log.w("MainActivity", "createUserWithEmail:failure", task.getException());
-                                    Toast.makeText(MainActivity.this, "User create failed.",Toast.LENGTH_LONG).show();
-                                }
-                            }
+            refAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                    pd.dismiss();
+                    if (task.isSuccessful()) {
+                        SharedPreferences settings=getSharedPreferences("PREFS_NAME",MODE_PRIVATE);
+                        SharedPreferences.Editor editor=settings.edit();
+                        editor.putBoolean("stayConnect",cBstayconnect.isChecked());
+                        editor.commit();
+                        Log.d("MainActivity", "createUserWithEmail:success");
+                        FirebaseUser user = refAuth.getCurrentUser();
+                        uid = user.getUid();
+                        userdb=new User(name,email,phone,uid,type,(long)0,true);
+                        refUsers.child(uid).setValue(userdb);
+                        Toast.makeText(MainActivity.this, "Successful registration", Toast.LENGTH_SHORT).show();
+                        Intent si = new Intent(MainActivity.this,MainChats.class);
+                        startActivity(si);
+                    }
+
+                    else {
+                        if (task.getException() instanceof FirebaseAuthUserCollisionException)
+                        {
+                            Toast.makeText(MainActivity.this, "User with e-mail already exist!", Toast.LENGTH_SHORT).show();
                         }
-                    });
+                        else {
+                            Log.w("MainActivity", "createUserWithEmail:failure", task.getException());
+                            Toast.makeText(MainActivity.this, "User create failed.",Toast.LENGTH_LONG).show();
+                        }
+                    }
+                }
+            });
         }
     }
 }
