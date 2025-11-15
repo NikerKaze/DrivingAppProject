@@ -55,7 +55,6 @@ public class MainChats extends AppCompatActivity {
     GeminiManager geminiManager;
     String TAG = "MainChats";
 
-    ValueEventListener UserListener2,UserListener;
     DatabaseReference db2,db1=FirebaseDatabase.getInstance().getReference().child("Users");
 
     String uid;

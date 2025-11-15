@@ -43,8 +43,7 @@
             android:background="#080092"
             android:layout_marginHorizontal="52dp"
             android:gravity="center_vertical"
-            android:paddingHorizontal="16dp"
-            >
+            android:paddingHorizontal="16dp">
 
             <Button
                 android:id="@+id/exitbtn"
@@ -52,7 +51,6 @@
                 android:layout_height="40dp"
                 android:background="@drawable/exiticon"
                 />
-
         </LinearLayout>
 
     </LinearLayout>
