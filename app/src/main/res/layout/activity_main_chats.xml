@@ -77,10 +77,10 @@
                 android:layout_width="0dp"
                 android:layout_height="50dp"
                 android:layout_weight="5"
-                android:textColor="@color/white"
                 android:visibility="invisible"
+                android:textColor="@color/white"
                 android:onClick="TeacherList"
-                android:backgroundTint="#FF6D00"
+                android:backgroundTint="#080092"
                 android:text="View Teachers"
                 />
 

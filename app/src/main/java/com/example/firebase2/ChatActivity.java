@@ -52,9 +52,6 @@ public class ChatActivity extends AppCompatActivity {
         if(st.equals("Profile")) {
             Intent si = new Intent(this,Loginok.class);
             startActivity(si);
-        } else if(st.equals("Data Filter-Sort")) {
-            Intent si = new Intent(this,Dbact.class);
-            startActivity(si);
         }
         return super.onOptionsItemSelected(item);
     }

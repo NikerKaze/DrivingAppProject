@@ -25,9 +25,6 @@
             android:name=".Loginok"
             android:exported="false" />
         <activity
-            android:name=".Dbact"
-            android:exported="false" />
-        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>

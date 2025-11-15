@@ -126,27 +126,6 @@
             android:layout_height="0dp"
             android:layout_weight="0.5" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:text="Uid:"
-            android:textColor="@color/black"
-            android:autoSizeTextType="uniform"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/tVuidview"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:textColor="@color/black"
-            android:layout_weight="1" />
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.5" />
-
         <CheckBox
             android:id="@+id/cBconnectview"
             android:layout_width="match_parent"
@@ -177,7 +156,7 @@
                 android:layout_weight="5"
                 android:onClick="update"
                 android:textColor="@color/white"
-                android:backgroundTint="#FF6D00"
+                android:backgroundTint="#080092"
                 android:text="Home Screen" />
 
             <Space

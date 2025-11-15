@@ -28,11 +28,10 @@ import static com.example.firebase2.FBref.refUsers;
 
 public class Loginok extends AppCompatActivity {
 
-    TextView tVnameview, tVemailview, tVuidview, tVtypeview,tVphoneview;
+    TextView tVnameview, tVemailview,tVtypeview,tVphoneview;
     CheckBox cBconnectview;
 
     String name, email,phone, uid,type="a";
-    Boolean newuser;
     User user;
     long count;
 
@@ -46,9 +45,6 @@ public class Loginok extends AppCompatActivity {
         if(st.equals("Profile")) {
             Intent si = new Intent(this,Loginok.class);
             startActivity(si);
-        } else if(st.equals("Data Filter-Sort")) {
-            Intent si = new Intent(this,Dbact.class);
-            startActivity(si);
         }
         return super.onOptionsItemSelected(item);
     }
@@ -61,7 +57,6 @@ public class Loginok extends AppCompatActivity {
 
         tVnameview=(TextView)findViewById(R.id.tVnameview);
         tVemailview=(TextView)findViewById(R.id.tVemailview);
-        tVuidview=(TextView)findViewById(R.id.tVuidview);
         tVtypeview=(TextView)findViewById(R.id.tVtypeview);
         tVphoneview=(TextView)findViewById(R.id.tVphoneview);
         cBconnectview=(CheckBox)findViewById(R.id.cBconnectview);
@@ -83,7 +78,6 @@ public class Loginok extends AppCompatActivity {
                 tVtypeview.setText(user.getType());
                 tVnameview.setText(user.getName());
                 tVemailview.setText(user.getEmail());
-                tVuidview.setText(user.getUid());
                 tVphoneview.setText(user.getPhone());
             }
 

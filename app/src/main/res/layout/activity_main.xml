@@ -36,7 +36,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:textColor="#163A52"
+            android:textColor="#080092"
             android:gravity="center"
             android:id="@+id/tVte"
             android:text="Welcome To DriveUp"
@@ -183,7 +183,7 @@
                 android:layout_weight="5"
                 android:onClick="logorreg"
                 android:textColor="@color/white"
-                android:backgroundTint="#FF6D00"
+                android:backgroundTint="#080092"
                 android:text="Login" />
 
             <Space

@@ -46,7 +46,7 @@
             android:id="@+id/Chatbtn"
             android:text="Open Chat"
             android:textSize="14sp"
-            android:backgroundTint="#FF6D00"
+            android:backgroundTint="#080092"
             />
 
     </LinearLayout>
