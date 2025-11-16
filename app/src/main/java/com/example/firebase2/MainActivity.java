@@ -186,7 +186,7 @@ public class MainActivity extends AppCompatActivity {
                         Log.d("MainActivity", "createUserWithEmail:success");
                         FirebaseUser user = refAuth.getCurrentUser();
                         uid = user.getUid();
-                        userdb=new User(name,email,phone,uid,type,(long)0,true);
+                        userdb=new User(name,email,phone,uid,type);
                         refUsers.child(uid).setValue(userdb);
                         Toast.makeText(MainActivity.this, "Successful registration", Toast.LENGTH_SHORT).show();
                         Intent si = new Intent(MainActivity.this,MainChats.class);

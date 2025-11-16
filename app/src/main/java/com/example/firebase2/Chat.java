@@ -25,10 +25,11 @@ public class Chat {
         Messege messege;
         String id = java.util.UUID.randomUUID().toString();
         if(senderId.equals(Id1)) {
-            messege = new Messege(msg, Id1, Id2,id);
+            messege = new Messege(msg, Id1, Id2);
         }
-        else {
-            messege = new Messege(msg, Id2, Id1,id);
+        else
+        {
+            messege = new Messege(msg, Id2, Id1);
         }
         msgs.add(messege);
     }

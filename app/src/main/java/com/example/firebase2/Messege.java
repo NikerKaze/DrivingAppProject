@@ -2,16 +2,15 @@ package com.example.firebase2;
 
 public class Messege {
 
-    private String messege, sId, rId, msgId;
+    private String messege, sId, rId;
 
     public Messege() {}
 
-    public Messege(String messege, String senderId, String receiverId , String msgId) {
+    public Messege(String messege, String senderId, String receiverId) {
 
         this.messege = messege;
         this.sId = senderId;
         this.rId = receiverId;
-        this.msgId = msgId;
     }
 
     public String getSender() {
@@ -25,9 +24,7 @@ public class Messege {
     public String getMessege() {
         return messege;
     }
-    public String getMsgId(){
-        return msgId;
-    }
+
     public void setSender(String sender) {
         this.sId=sender;
     }
@@ -38,9 +35,6 @@ public class Messege {
 
     public void setMessege(String messege) {
         this.messege=messege;
-    }
-    public void setMsgId(String msgId){
-        this.msgId=msgId;
     }
 
 }

@@ -102,7 +102,7 @@ public class ChatActivity extends AppCompatActivity {
         tv.setText("Chat with "+user2.getName());
 
         btn.setOnClickListener(v -> {
-            currentChat.addMessege(new Messege(et.getText().toString(),uid,user2.getUid(),UUID.randomUUID().toString()));
+            currentChat.addMessege(new Messege(et.getText().toString(),uid,user2.getUid()));
             dbChats.child(currentChat.getChatId()).setValue(currentChat);
             et.setText("");
         });

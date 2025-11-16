@@ -5,8 +5,6 @@ import java.io.Serializable;
 
 public class User implements Serializable {
     private String name, email, phone, uid, type;
-    private long serialnum;
-    private Boolean active;
 
     public User()
     {
@@ -15,18 +13,14 @@ public class User implements Serializable {
         phone="";
         type="";
         uid="";
-        serialnum=0;
-        active=true;
     }
 
-    public User (String name, String email, String phone, String uid,String type, long serialnum, Boolean active) {
+    public User (String name, String email, String phone, String uid,String type) {
         this.name=name;
         this.email=email;
         this.phone=phone;
         this.type=type;
         this.uid=uid;
-        this.serialnum=serialnum;
-        this.active=active;
     }
 
     public void setType(String type) {
@@ -60,18 +54,5 @@ public class User implements Serializable {
     public String getUid() { return uid; }
     public void setUid(String uid) {
         this.uid=uid;
-    }
-
-    public long getSerialnum() {
-        return serialnum;
-    }
-
-    public void setSerialnum(long serialnum) {
-        this.serialnum=serialnum;
-    }
-
-    public Boolean getActive() { return active; }
-    public void setActive(Boolean active) {
-        this.active=active;
     }
 }
