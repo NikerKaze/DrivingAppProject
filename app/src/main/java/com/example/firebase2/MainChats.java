@@ -168,7 +168,7 @@ public class MainChats extends AppCompatActivity {
 
         InputMethodManager imm = (InputMethodManager) this.getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(view.getWindowToken(),0);
-        String prompt = "Respond with only a 2-word greeting, Use different words, Add a !";
+        String prompt = "Respond with only a 2-word greeting,Be creative ,Do not use !";
         ProgressDialog pD = new ProgressDialog(this);
         pD.setTitle("Sent Prompt");
         pD.setMessage("Waiting for response...");
@@ -179,13 +179,13 @@ public class MainChats extends AppCompatActivity {
             @Override
             public void onSuccess(String result) {
                 pD.dismiss();
-                tVtitle.setText(result);
+                tVtitle.setText(result+"!");
             }
 
             @Override
             public void onFailure(Throwable error) {
                 pD.dismiss();
-                tVtitle.setText("Failed prompting Gemini");
+                tVtitle.setText("Failed Prompting Gemini");
                 Log.e(TAG, "textPrompt/ Error: " + error.getMessage());
             }
         });

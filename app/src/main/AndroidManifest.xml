@@ -10,8 +10,13 @@
         android:label="DriveUp"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar"
-        >
+        android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar">
+        <activity
+            android:name=".AlarmManagerActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AlarmManager"
+            android:exported="false" />
         <activity
             android:name=".ChatActivity"
             android:exported="false" />

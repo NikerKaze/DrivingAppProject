@@ -18,10 +18,7 @@ public class GeminiManager
     private GenerativeModel gemini;
 
     private GeminiManager() {
-        gemini = new GenerativeModel(
-                "gemini-2.5-flash",
-                BuildConfig.Gemini_API_Key
-        );
+        gemini = new GenerativeModel("gemini-2.5-flash-lite", BuildConfig.Gemini_API_Key);
     }
 
     public static GeminiManager getInstance() {
@@ -43,7 +40,8 @@ public class GeminiManager
             public void resumeWith(@NonNull Object result) {
                 if (result instanceof Result.Failure) {
                     callback.onFailure(((Result.Failure) result).exception);
-                } else {
+                }
+                else {
                     callback.onSuccess(((GenerateContentResponse) result).getText());
                 }
             }
