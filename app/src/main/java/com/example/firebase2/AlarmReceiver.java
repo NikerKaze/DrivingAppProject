@@ -27,7 +27,7 @@ public class AlarmReceiver extends BroadcastReceiver {
         }
 
         NotificationCompat.Builder notiBbuilder=new NotificationCompat.Builder(context,CHANNEL_ID).
-                setSmallIcon(R.drawable.ic_launcher_foreground).
+                setSmallIcon(R.drawable.icon).
                 setContentTitle("Alarm").
                 setContentText("Your Alarm went off").
                 setPriority(NotificationCompat.PRIORITY_DEFAULT);

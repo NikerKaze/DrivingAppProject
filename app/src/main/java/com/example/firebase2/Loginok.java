@@ -46,6 +46,10 @@ public class Loginok extends AppCompatActivity {
             Intent si = new Intent(this,Loginok.class);
             startActivity(si);
         }
+        if(st.equals("Alarms")) {
+            Intent si = new Intent(this,AlarmManagerActivity.class);
+            startActivity(si);
+        }
         return super.onOptionsItemSelected(item);
     }
 

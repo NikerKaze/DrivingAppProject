@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal"
-    tools:context=".MainActivity">
+    tools:context=".AlarmManagerActivity">
 
     <Space
         android:layout_width="0dp"
@@ -22,13 +22,14 @@
         <Space
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="10" />
+            android:layout_weight="15" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="25dp"
-            android:text="Alarm Manager + Notification" />
+            android:textSize="35dp"
+            android:textColor="#163A52"
+            android:text="Your Alarms" />
 
         <Space
             android:layout_width="match_parent"
@@ -40,7 +41,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="20dp"
-            android:hint="Set Alarm in x seconds" />
+            android:hint="Set Alarm's Time" />
 
         <Space
             android:layout_width="match_parent"
@@ -62,9 +63,10 @@
                 android:id="@+id/Button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="30dp"
-                android:hint="Set Alarm"
-                android:backgroundTint="#4CAF50"
+                android:textSize="25dp"
+                android:text="Set Alarm"
+                android:textColor="@android:color/white"
+                android:backgroundTint="#080092"
                 />
 
             <Space
@@ -77,9 +79,43 @@
         <Space
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="50" />
+            android:layout_weight="60" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="10"
+            android:orientation="horizontal">
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:onClick="update"
+                android:textSize="20dp"
+                android:textColor="@color/white"
+                android:backgroundTint="#080092"
+                android:text="Home Screen" />
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+        </LinearLayout>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="5" />
 
     </LinearLayout>
+
 
     <Space
         android:layout_width="0dp"
