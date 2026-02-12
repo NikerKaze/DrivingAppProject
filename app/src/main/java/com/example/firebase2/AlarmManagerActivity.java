@@ -14,7 +14,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TimePicker;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -23,13 +25,17 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import java.util.GregorianCalendar;
+
 public class AlarmManagerActivity extends AppCompatActivity {
     private AlarmReceiver alarmReciver;
     private AlarmManager alarmManager;
     private PendingIntent alarmIntent;
 
-    EditText editText;
     Button button;
+    DatePicker datePicker;
+    TimePicker timePicker;
+
 
 
     @Override
@@ -54,8 +60,10 @@ public class AlarmManagerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_alarm_manager);
         alarmReciver=new AlarmReceiver();
-        editText=findViewById(R.id.editText);
         button=findViewById(R.id.Button);
+        datePicker=findViewById(R.id.datePicker);
+        timePicker=findViewById(R.id.timePicker);
+
 
         Intent intent=new Intent(this,AlarmReceiver.class);
         alarmIntent=PendingIntent.getBroadcast(this,12,intent,PendingIntent.FLAG_IMMUTABLE);
@@ -63,9 +71,16 @@ public class AlarmManagerActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String time=editText.getText().toString();
-                int TimeInSec=Integer.parseInt(time);
-                alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP, SystemClock.elapsedRealtime()+TimeInSec*1000,alarmIntent);
+
+                long triggerAtMillis = new GregorianCalendar(
+                        datePicker.getYear(),
+                        datePicker.getMonth(),
+                        datePicker.getDayOfMonth(),
+                        timePicker.getHour(),
+                        timePicker.getMinute()
+                ).getTimeInMillis();
+
+                alarmManager.set(AlarmManager.RTC_WAKEUP, triggerAtMillis,alarmIntent);
             }
         });
     }
