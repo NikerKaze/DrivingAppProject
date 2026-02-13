@@ -16,6 +16,7 @@ public class AlarmReceiver extends BroadcastReceiver {
     @SuppressLint("NotificationPermission")
     @Override
     public void onReceive(Context context, Intent intent) {
+        String title = intent.getStringExtra("title");
         Toast.makeText(context, "You got a Notification", Toast.LENGTH_SHORT).show();
         String CHANNEL_ID="ID";
         String CHANNEL_NAME="NAME";
@@ -29,7 +30,7 @@ public class AlarmReceiver extends BroadcastReceiver {
         NotificationCompat.Builder notiBbuilder=new NotificationCompat.Builder(context,CHANNEL_ID).
                 setSmallIcon(R.drawable.icon).
                 setContentTitle("Alarm").
-                setContentText("Your Alarm went off").
+                setContentText(title).
                 setPriority(NotificationCompat.PRIORITY_DEFAULT);
         notificationManager.notify(NOTIFICATION_ID,notiBbuilder.build());
     }

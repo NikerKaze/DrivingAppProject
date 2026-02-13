@@ -1,7 +1,11 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <style name="Base.Theme.FireBase2"
+
+    <style
+        name="Base.Theme.FireBase2"
         parent="Theme.Material3.DayNight">
-        <item name="actionBarStyle">@style/Widget.FireBase2.ActionBar
-        </item>
+        <item name="actionBarStyle">@style/Widget.FireBase2.ActionBar</item>
+        <item name="actionOverflowButtonStyle">@style/Widget.FireBase2.ActionOverflowButton</item>
+        <item name="colorControlNormal">@android:color/white</item>
     </style>
-    </resources>
+
+</resources>

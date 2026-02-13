@@ -4,6 +4,8 @@
         name="Base.Theme.FireBase2"
         parent="Theme.Material3.DayNight">
         <item name="actionBarStyle">@style/Widget.FireBase2.ActionBar</item>
+        <item name="actionOverflowButtonStyle">@style/Widget.FireBase2.ActionOverflowButton</item>
+        <item name="colorControlNormal">@android:color/white</item>
     </style>
 
     <style
@@ -13,6 +15,11 @@
     <style name="Widget.FireBase2.ActionBar" parent="Widget.AppCompat.ActionBar.Solid">
         <item name="background">@android:color/black</item>
         <item name="titleTextStyle">@style/TextAppearance.FireBase2.ActionBarTitle</item>
+    </style>
+
+    <style name="Widget.FireBase2.ActionOverflowButton" parent="Widget.AppCompat.ActionButton.Overflow">
+        <item name="android:tint">@android:color/white</item>
+        <item name="tint">@android:color/white</item>
     </style>
 
     <style name="TextAppearance.FireBase2.ActionBarTitle" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">

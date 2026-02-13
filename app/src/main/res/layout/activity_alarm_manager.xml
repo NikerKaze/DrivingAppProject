@@ -36,6 +36,20 @@
             android:layout_height="0dp"
             android:layout_weight="5" />
 
+        <EditText
+            android:id="@+id/eTpurpose"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="6"
+            android:textStyle="bold"
+            android:layout_marginEnd="30dp"
+            android:layout_marginStart="30dp"
+            android:hint="Alarm's Purpose"
+            android:textColor="#163A52"
+            android:gravity="bottom"
+            android:textSize="20dp"
+            />
+
         <DatePicker
             android:layout_width="match_parent"
             android:layout_height="150dp"

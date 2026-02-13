@@ -35,6 +35,7 @@ public class AlarmManagerActivity extends AppCompatActivity {
     Button button;
     DatePicker datePicker;
     TimePicker timePicker;
+    EditText eTpurpose;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -61,13 +62,17 @@ public class AlarmManagerActivity extends AppCompatActivity {
         button=findViewById(R.id.Button);
         datePicker=findViewById(R.id.datePicker);
         timePicker=findViewById(R.id.timePicker);
+        eTpurpose=findViewById(R.id.eTpurpose);
+        AlarmManagerActivity x=this;
 
-        Intent intent=new Intent(this,AlarmReceiver.class);
-        alarmIntent=PendingIntent.getBroadcast(this,12,intent,PendingIntent.FLAG_IMMUTABLE);
-        alarmManager=(AlarmManager)getSystemService(ALARM_SERVICE);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                Intent intent=new Intent(x,AlarmReceiver.class);
+                intent.putExtra("title", eTpurpose.getText().toString());
+                alarmIntent=PendingIntent.getBroadcast(x,12,intent,PendingIntent.FLAG_IMMUTABLE);
+                alarmManager=(AlarmManager)getSystemService(ALARM_SERVICE);
 
                 long triggerAtMillis = new GregorianCalendar(
                         datePicker.getYear(),
