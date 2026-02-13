@@ -71,7 +71,7 @@ public class AlarmManagerActivity extends AppCompatActivity {
 
                 Intent intent=new Intent(x,AlarmReceiver.class);
                 intent.putExtra("title", eTpurpose.getText().toString());
-                alarmIntent=PendingIntent.getBroadcast(x,12,intent,PendingIntent.FLAG_IMMUTABLE);
+                alarmIntent=PendingIntent.getBroadcast(x,12,intent,PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
                 alarmManager=(AlarmManager)getSystemService(ALARM_SERVICE);
 
                 long triggerAtMillis = new GregorianCalendar(
