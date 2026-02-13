@@ -36,8 +36,6 @@ public class AlarmManagerActivity extends AppCompatActivity {
     DatePicker datePicker;
     TimePicker timePicker;
 
-
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main, menu);
@@ -63,7 +61,6 @@ public class AlarmManagerActivity extends AppCompatActivity {
         button=findViewById(R.id.Button);
         datePicker=findViewById(R.id.datePicker);
         timePicker=findViewById(R.id.timePicker);
-
 
         Intent intent=new Intent(this,AlarmReceiver.class);
         alarmIntent=PendingIntent.getBroadcast(this,12,intent,PendingIntent.FLAG_IMMUTABLE);

@@ -42,7 +42,7 @@
             android:layout_weight="0.5"
             android:textStyle="bold"
             android:layout_marginStart="20dp"
-            android:text="Active chats:"
+            android:text="Your Active chats"
             android:textColor="#163A52"
             android:gravity="bottom"
             android:textSize="20dp"

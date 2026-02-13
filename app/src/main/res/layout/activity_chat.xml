@@ -19,8 +19,9 @@
         android:orientation="horizontal">
 
         <LinearLayout
-            android:layout_width="280dp"
+            android:layout_width="0dp"
             android:layout_height="60dp"
+            android:layout_weight="1"
             android:background="#080092"
             android:gravity="center_vertical"
             android:paddingHorizontal="16dp">
@@ -38,20 +39,23 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="80dp"
+            android:layout_width="wrap_content"
             android:layout_height="60dp"
             android:background="#080092"
-            android:layout_marginHorizontal="52dp"
             android:gravity="center_vertical"
-            android:paddingHorizontal="16dp">
+            android:paddingHorizontal="12dp">
 
-            <Button
+            <ImageButton
                 android:id="@+id/exitbtn"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:backgroundTint="@null"
-                android:background="@drawable/exiticon"
-                />
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:adjustViewBounds="true"
+                android:background="@android:color/transparent"
+                android:contentDescription="Exit chat"
+                android:scaleType="fitCenter"
+                android:src="@drawable/exiticon"
+                android:tint="@null"
+                tools:ignore="UseAppTint" />
         </LinearLayout>
 
     </LinearLayout>
@@ -82,14 +86,19 @@
             android:padding="10dp"
             android:scrollbars="vertical" />
 
-        <Button
+        <ImageButton
             android:id="@+id/sendButton"
             android:layout_width="48dp"
             android:layout_height="48dp"
+            android:layout_gravity="center_vertical"
             android:layout_marginStart="8dp"
-            android:backgroundTint="@null"
-            android:background="@drawable/sendicon"
-            />
+            android:adjustViewBounds="true"
+            android:background="@android:color/transparent"
+            android:contentDescription="Send message"
+            android:scaleType="fitCenter"
+            android:src="@drawable/sendicon"
+            android:tint="@null"
+            tools:ignore="UseAppTint" />
     </LinearLayout>
 
 </LinearLayout>

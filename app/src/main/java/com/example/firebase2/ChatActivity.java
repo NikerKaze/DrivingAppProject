@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 import java.util.UUID;
@@ -35,7 +36,7 @@ public class ChatActivity extends AppCompatActivity {
     TextView tv;
     ListView lv;
     EditText et;
-    Button btn,exitbtn;
+    ImageButton btn,exitbtn;
     ArrayList<Messege> messeges=new ArrayList<>();
     private MessegeAdapter adapter;
 
