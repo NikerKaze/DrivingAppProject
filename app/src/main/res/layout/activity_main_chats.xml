@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal"
+    android:background="@drawable/download2"
     tools:context=".MainChats" >
 
     <Space
@@ -30,7 +31,7 @@
             android:layout_height="0dp"
             android:layout_weight="1"
             android:textStyle="bold"
-            android:textColor="#163A52"
+            android:textColor="@color/black"
             android:gravity="center"
             android:textSize="30dp"
             />
@@ -43,7 +44,7 @@
             android:textStyle="bold"
             android:layout_marginStart="20dp"
             android:text="Your Active chats"
-            android:textColor="#163A52"
+            android:textColor="@color/black"
             android:gravity="bottom"
             android:textSize="20dp"
             />
@@ -80,7 +81,7 @@
                 android:visibility="invisible"
                 android:textColor="@color/white"
                 android:onClick="TeacherList"
-                android:backgroundTint="#080092"
+                android:backgroundTint="@color/black"
                 android:text="View Teachers"
                 />
 

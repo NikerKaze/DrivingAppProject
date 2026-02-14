@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal"
+    android:background="@drawable/download2"
     tools:context=".TeacherList" >
 
     <Space
@@ -49,7 +50,7 @@
 
             <Button
                 android:id="@+id/btn"
-                android:backgroundTint="#080092"
+                android:backgroundTint="@color/black"
                 android:layout_width="0dp"
                 android:layout_height="50dp"
                 android:layout_weight="5"

@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal"
+    android:background="@drawable/download"
     tools:context=".MainActivity" >
 
     <Space
@@ -22,31 +23,24 @@
         <Space
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="2" />
-
-        <ImageView
-            android:layout_width="100dp"
-            android:layout_gravity="center"
-            android:layout_height="0dp"
-            android:layout_weight="2.5"
-            android:background="@drawable/icon"
-            />
+            android:layout_weight="1.2" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:textColor="#080092"
+            android:textColor="#0000FF"
             android:gravity="center"
             android:id="@+id/tVte"
             android:text="Welcome To DriveUp"
             android:autoSizeTextType="uniform"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            />
 
         <Space
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="0.5" />
+            android:layout_weight="0.75" />
 
         <TextView
             android:layout_width="match_parent"
@@ -55,8 +49,8 @@
             android:gravity="center"
             android:id="@+id/tVtitle"
             android:text="Login"
-            android:textColor="#FF6D00"
-            android:textSize="25dp"
+            android:textColor="#0000FF"
+            android:textSize="30dp"
             android:textStyle="bold" />
 
         <Space
@@ -71,8 +65,11 @@
             android:layout_weight="1"
             android:visibility="invisible"
             android:ems="10"
+            android:backgroundTint="#65FFFFFF"
+            android:background="@drawable/rounded_edit_text"
             android:textColor="@color/black"
-            android:hint="name"
+            android:textStyle="bold"
+            android:hint="Name"
             android:inputType="textPersonName" />
 
         <Space
@@ -86,8 +83,11 @@
             android:layout_height="0dp"
             android:layout_weight="1"
             android:ems="10"
+            android:backgroundTint="#65FFFFFF"
+            android:background="@drawable/rounded_edit_text"
             android:textColor="@color/black"
-            android:hint="e-mail"
+            android:textStyle="bold"
+            android:hint="E-mail"
             android:inputType="textEmailAddress" />
 
         <Space
@@ -101,8 +101,11 @@
             android:layout_height="0dp"
             android:layout_weight="1"
             android:ems="10"
+            android:backgroundTint="#65FFFFFF"
+            android:background="@drawable/rounded_edit_text"
             android:textColor="@color/black"
-            android:hint="password"
+            android:textStyle="bold"
+            android:hint="Password"
             android:inputType="textPassword" />
 
         <Space
@@ -116,9 +119,12 @@
             android:layout_height="0dp"
             android:layout_weight="1"
             android:visibility="invisible"
+            android:backgroundTint="#65FFFFFF"
+            android:background="@drawable/rounded_edit_text"
             android:textColor="@color/black"
+            android:textStyle="bold"
             android:ems="10"
-            android:hint="phone"
+            android:hint="Phone"
             android:inputType="phone" />
 
         <Space
@@ -131,9 +137,13 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
+            android:textSize="17dp"
+            android:backgroundTint="#65FFFFFF"
+            android:background="@drawable/rounded_edit_text"
             android:textColor="@color/black"
+            android:textStyle="bold"
             android:visibility="invisible"
-            android:text="Are you a Teacher"
+            android:text="Are you a Teacher?"
            />
 
         <Space
@@ -145,8 +155,12 @@
             android:id="@+id/cBstayconnect"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"
+            android:backgroundTint="#65FFFFFF"
+            android:background="@drawable/rounded_edit_text"
             android:textColor="@color/black"
+            android:textStyle="bold"
+            android:layout_weight="1"
+            android:textSize="17dp"
             android:text="Stay Connected" />
 
         <Space
@@ -156,6 +170,9 @@
 
         <TextView
             android:id="@+id/tVregister"
+            android:textColor="#080092"
+            android:textStyle="bold"
+            android:textSize="20dp"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1" />
@@ -182,6 +199,8 @@
                 android:layout_height="match_parent"
                 android:layout_weight="5"
                 android:onClick="logorreg"
+                android:textStyle="bold"
+                android:textSize="15dp"
                 android:textColor="@color/white"
                 android:backgroundTint="#080092"
                 android:text="Login" />
