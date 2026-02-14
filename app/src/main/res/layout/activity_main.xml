@@ -170,12 +170,14 @@
 
         <TextView
             android:id="@+id/tVregister"
-            android:textColor="#080092"
+            android:textColor="@color/black"
             android:textStyle="bold"
-            android:textSize="20dp"
+            android:background="@drawable/rounded_edit_text"
+            android:backgroundTint="#65FFFFFF"
+            android:textSize="18dp"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1" />
+            android:layout_height="wrap_content"
+            />
 
         <Space
             android:layout_width="match_parent"

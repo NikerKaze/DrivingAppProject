@@ -17,6 +17,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -81,7 +82,7 @@ public class AlarmManagerActivity extends AppCompatActivity {
                         timePicker.getHour(),
                         timePicker.getMinute()
                 ).getTimeInMillis();
-
+                Toast.makeText(x, "Alarm Set", Toast.LENGTH_SHORT).show();
                 alarmManager.set(AlarmManager.RTC_WAKEUP, triggerAtMillis,alarmIntent);
             }
         });
