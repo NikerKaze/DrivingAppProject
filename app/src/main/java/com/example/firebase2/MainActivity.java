@@ -192,6 +192,7 @@ public class MainActivity extends AppCompatActivity {
                         startActivity(si);
                     }
 
+
                     else {
                         if (task.getException() instanceof FirebaseAuthUserCollisionException)
                         {
